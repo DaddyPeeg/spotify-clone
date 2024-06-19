@@ -3,13 +3,13 @@ import usePlayer from "./usePlayer";
 import useAuthModal from "./useAuthModal";
 import { useUser } from "./useUser";
 
-const useOnPlay = (songs: Song[]) => {
+const useOnPlay = (songs: Song[], publicPlaylist?: boolean) => {
   const player = usePlayer();
   const authModal = useAuthModal();
   const { user } = useUser();
 
   const onPlay = (id: string) => {
-    if (!user) {
+    if (!user && !publicPlaylist) {
       return authModal.onOpen();
     }
 

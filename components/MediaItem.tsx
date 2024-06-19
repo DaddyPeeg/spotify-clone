@@ -4,13 +4,15 @@ import useLoadImage from "@/hooks/useLoadImage";
 import { Song } from "@/types";
 import Image from "next/image";
 import React from "react";
+import { twMerge } from "tailwind-merge";
 
 interface MediaItemProps {
   data: Song;
   onClick?: (id: string) => void;
+  player?: boolean;
 }
 
-const MediaItem = ({ onClick, data }: MediaItemProps) => {
+const MediaItem = ({ onClick, data, player }: MediaItemProps) => {
   const imageUrl = useLoadImage(data);
 
   const handleClick = () => {
@@ -33,7 +35,12 @@ const MediaItem = ({ onClick, data }: MediaItemProps) => {
           className="object-cover"
         />
       </div>
-      <div className="flex flex-col gap-y-1 overflow-hidden">
+      <div
+        className={twMerge(
+          "flex flex-col gap-y-1 overflow-hidden",
+          player && "w-auto md:w-[8rem] lg:w-auto"
+        )}
+      >
         <p className="text-white truncate">{data.title}</p>
         <p className="text-neutral-400 text-sm truncate">{data.author}</p>
       </div>

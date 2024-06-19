@@ -10,7 +10,7 @@ import { Song } from "@/types";
 import React from "react";
 
 const PageContent = ({ songs }: PageContentProps) => {
-  const onPlay = useOnPlay(songs);
+  const onPlay = useOnPlay(songs, true);
 
   if (songs.length === 0) {
     return <div className="mt-4 text-neutral-400">No songs available</div>;
