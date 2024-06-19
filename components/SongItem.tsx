@@ -13,7 +13,7 @@ import PlayButton from "./PlayButton";
 
 const SongItem = ({ data, onClick }: SongItemProps) => {
   const imagePath = useLoadImage(data);
-  console.log(imagePath);
+
   return (
     <div
       onClick={() => onClick(data.id)}
