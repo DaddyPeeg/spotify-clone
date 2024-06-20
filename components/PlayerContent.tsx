@@ -24,8 +24,6 @@ interface PlayerContentProps {
 
 const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
   const player = usePlayer();
-
-  console.log("logs", player.repeatOne, player.isShuffle);
   const {
     handleSeek,
     audioRef,
@@ -40,7 +38,9 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
   } = useAudio();
 
   useEffect(() => {
+    player.setIsPlaying(true);
     customAudioPlay();
+    player.setEvents(customAudioPlay, customAudioPause);
   }, []);
 
   const Icon = customAudioIsPlaying ? BsPauseFill : BsPlayFill;
@@ -82,8 +82,10 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
 
   const handlePlay = () => {
     if (!customAudioIsPlaying) {
+      player.setIsPlaying(true);
       customAudioPlay();
     } else {
+      player.setIsPlaying(false);
       customAudioPause();
     }
   };
@@ -110,7 +112,7 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
           <LikeButton songId={song.id} />
         </div>
       </div>
-      <div className="flex flex-col col-span-2 md:col-auto gap-y-4 max-w-[722px] w-full h-full overflow-hidden">
+      <div className="flex flex-col col-span-2 md:col-auto gap-y-4 max-w-[722px] w-full h-full overflow-hidden justify-center">
         <div className="flex items-center justify-center gap-x-4">
           <ImShuffle
             size={16}
@@ -155,7 +157,7 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
               <input
                 type="range"
                 className="w-full h-1 bg-white/20 rounded-lg appearance-none cursor-pointer range-xs progressBar relative outline-none before:absolute before:left-0 before:top-0 before:h-1 before:bg-green-500 before:rounded-full"
-                max={customAudioDuration as number}
+                max={(customAudioDuration as number) || 100}
                 ref={progressBarRef}
                 value={customElapsedTime}
                 onChange={(e) => {

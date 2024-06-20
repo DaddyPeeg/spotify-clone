@@ -17,10 +17,10 @@ const PlayButton = ({ activeId }: { activeId: string }) => {
           : "group-hover:opacity-100 group-hover:translate-y-0"
       )}
     >
-      {nowPlaying ? (
-        <FaPause className="text-black" />
+      {nowPlaying && player.isPlaying ? (
+        <FaPause onClick={() => player.setPause()} className="text-black" />
       ) : (
-        <FaPlay className="text-black" />
+        <FaPlay onClick={() => player.setPlay()} className="text-black" />
       )}
     </button>
   );

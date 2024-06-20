@@ -10,6 +10,7 @@ import { Song } from "@/types";
 import Image from "next/image";
 import React from "react";
 import PlayButton from "./PlayButton";
+import usePlayer from "@/hooks/usePlayer";
 
 const SongItem = ({ data, onClick }: SongItemProps) => {
   const imagePath = useLoadImage(data);
