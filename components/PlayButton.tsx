@@ -7,7 +7,6 @@ import { twMerge } from "tailwind-merge";
 
 const PlayButton = ({ activeId }: { activeId: string }) => {
   const player = usePlayer();
-  console.log(player.events);
   const nowPlaying = activeId === player.activeId;
   return (
     <button
