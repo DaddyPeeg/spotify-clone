@@ -7,6 +7,7 @@ import { twMerge } from "tailwind-merge";
 
 const PlayButton = ({ activeId }: { activeId: string }) => {
   const player = usePlayer();
+  console.log(player.events);
   const nowPlaying = activeId === player.activeId;
   return (
     <button
@@ -16,11 +17,18 @@ const PlayButton = ({ activeId }: { activeId: string }) => {
           ? "opacity-100 translate-y-0"
           : "group-hover:opacity-100 group-hover:translate-y-0"
       )}
+      onClick={() => {
+        if (player.isPlaying) {
+          player.setPause();
+          return;
+        }
+        player.setPlay();
+      }}
     >
       {nowPlaying && player.isPlaying ? (
-        <FaPause onClick={() => player.setPause()} className="text-black" />
+        <FaPause className="text-black" />
       ) : (
-        <FaPlay onClick={() => player.setPlay()} className="text-black" />
+        <FaPlay className="text-black" />
       )}
     </button>
   );
