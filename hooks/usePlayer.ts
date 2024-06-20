@@ -14,7 +14,7 @@ interface PlayerStore {
   temporaryIds: string[];
 }
 
-const usePlayer = create<PlayerStore>((set) => ({
+const usePlayer: any = create<PlayerStore>((set) => ({
   ids: [],
   temporaryIds: [],
   activeId: undefined,

@@ -51,7 +51,9 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
       return;
     }
 
-    const currentIndex = player.ids.findIndex((id) => id === player.activeId);
+    const currentIndex = player.ids.findIndex(
+      (id: any) => id === player.activeId
+    );
     const nextSong = player.ids[currentIndex + 1];
 
     if (!nextSong) {
@@ -66,7 +68,9 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
       return;
     }
 
-    const currentIndex = player.ids.findIndex((id) => id === player.activeId);
+    const currentIndex = player.ids.findIndex(
+      (id: any) => id === player.activeId
+    );
     const previousSong = player.ids[currentIndex - 1];
 
     if (!previousSong) {
