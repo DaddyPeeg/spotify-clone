@@ -31,6 +31,7 @@ export default async function RootLayout({
           <ToasterProvider />
           <UserProvider>
             <ModalProvider />
+            wew
             <Sidebar songs={userSongs}>{children}</Sidebar>
             <Player />
           </UserProvider>
